@@ -1,0 +1,10 @@
+FROM node:erbium-alpine3.12 as build
+WORKDIR /usr/src/app
+
+COPY package.json yarn.lock ./
+RUN yarn
+
+COPY server.js .spotify.api.client.secrets.json ./
+
+EXPOSE 3001
+CMD ["sh", "-c", "node server.js"]
